@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from store.models import Product, Order
 
 # Create your views here.
 
@@ -7,7 +8,8 @@ def index(request):
     return render(request, 'store/index.html', context)
 
 def inventory(request):
-    context = {}
+    product_list = Product.objects.order_by("product_id")
+    context = {"product_list" : product_list}
     return render(request, 'store/inventory.html', context)
 
 def basket(request):

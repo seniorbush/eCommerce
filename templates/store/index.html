@@ -3,20 +3,15 @@
 
 <html>
   <head>
-    <!-- Other meta tags and title here -->
+    <meta charset="utf-8" />
+    <title>DigiDomus</title>
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'css/style.css' %}"
+      href="{% static 'css/style.css' %}?{% now 'U' %}"
     />
   </head>
   <body>
-    <h3>Index, homepage</h3>
+    <h1>landing page</h1>
   </body>
 </html>
-
-<!-- {% load static %}
-<link rel="'stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
-
-
-<h3>Store</h3> -->
