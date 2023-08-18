@@ -1,3 +1,16 @@
+* {
+  font-family: "Oswald", sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+.navbar-brand span {
+  font-weight: 500;
+}
+
 .card {
   position: relative;
   display: -ms-flexbox;
@@ -13,13 +26,14 @@
 .card-body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  padding: 1.25rem;
   text-align: center;
 }
 
-/* .card-img {
-  object-fit: contain;
-} */
+.card-img-top {
+  object-fit: cover;
+  max-height: 150px;
+  min-width: 230px;
+}
 
 .card-img-actions {
   position: relative;
@@ -27,4 +41,8 @@
 
 i {
   font-size: 1.5rem;
+}
+
+p {
+  font-size: 12px;
 }
