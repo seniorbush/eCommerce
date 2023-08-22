@@ -29,9 +29,11 @@
   </head>
   <body>
     <header class="container">
-      <nav class="navbar sticky-top bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand">Digi<span>Domus</span></a>
+      <nav class="navbar fixed-top bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand"
+            ><i class="bi bi-house"></i>Digi<span>Domus</span></a
+          >
           <form class="d-flex" role="search">
             <input
               class="form-control me-2"
@@ -42,40 +44,55 @@
             <button class="btn btn-outline-dark" type="submit">Search</button>
           </form>
           <div class="btn-group">
-            <button class="btn">
-              <i class="bi bi-bag-plus basket"></i>
-            </button>
+            <a type="button" class="btn" href="{% url 'basket' %}"
+              ><i class="bi bi-bag-plus basket"></i
+            ></a>
+
             <button class="btn"><i class="bi bi-person-fill"></i></button>
           </div>
         </div>
       </nav>
     </header>
-    <main class="container-fluid">
+    <main class="py-5">
       {% if product_list %}
-      <div class="container d-flex justify-content-center mt-50 mb-50">
-        <div class="row gy-3">
+      <div class="container px-4 px-lg-5 mt-5">
+        <div
+          class="row g-4 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-between"
+        >
           {% for product in product_list %}
+
           <!-- product list grid -->
           <div class="col-lg-3 col-md-6 col-sm-12 d-flex">
             <!-- product cards -->
-            <div
-              class="card justify-content-space-between border-0 shadow mb-5 rounded"
-            >
-              <img src="{{ product.product_image.url }}" class="card-img-top" />
-              <div class="card-body">
-                <h6 class="font-weight-semibold mb-1">
-                  {{ product.product_name }}
-                </h6>
-                <!-- <div>{{ product.product_id }}</div> -->
-                <h4 class="mb-1 text-muted">£{{ product.product_price }}</h4>
-                <p>Quantity Available: {{ product.product_stock }}</p>
-                <a
-                  href="{% url 'product' product.product_id %}"
-                  type="button"
-                  class="btn bg-cart m-0"
-                >
-                  <i class="bi bi-info-square"></i>
-                </a>
+            <div class="card h-100 border-0 justify-content-center">
+              <a
+                href="{% url 'product' product.product_id %}"
+                type="button"
+                class="btn bg-cart m-0 p-0"
+              >
+                <div class="card-body p-0 m-0 border-1">
+                  <img
+                    src="{{ product.product_image.url }}"
+                    class="card-img-top"
+                  />
+                  <div class="product-name pb-1 pt-1">
+                    <h6 class="font-weight-semibold">
+                      {{ product.product_name }}
+                    </h6>
+                  </div>
+                  <div class="product-price-and-stock">
+                    <h5 class="mb-1 text-muted">
+                      £{{ product.product_price }}
+                    </h5>
+                    <p class="text-muted mb-1">
+                      Quantity Available: {{ product.product_stock }}
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <div
+                class="card-footer p-0 m-0 d-flex justify-content-center border-1"
+              >
                 <button type="button" class="btn bg-cart m-0">
                   <i class="bi bi-bag-plus"></i>
                 </button>
