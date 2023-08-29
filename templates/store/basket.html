@@ -35,15 +35,6 @@
           <a class="navbar-brand"
             ><i class="bi bi-house"></i>Digi<span>Domus</span></a
           >
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-dark" type="submit">Search</button>
-          </form>
           <div class="btn-group">
             <button class="btn">
               <i class="bi bi-bag-plus basket"></i>
@@ -61,28 +52,10 @@
       </a>
     </div>
 
-    <!-- Product Section -->
+    <!-- Basket Section -->
     <section class="container">
       <br />
-      <table class="table">
-        <tr>
-          <th scope="col">
-            <h6>Items: <strong>3</strong></h6>
-          </th>
-
-          <th scope="col">
-            <h6>Total: <strong>£148.76</strong></h6>
-          </th>
-          <th scope="col">
-            <a href="{% url 'checkout' %}" class="btn btn-dark">Checkout</a>
-          </th>
-        </tr>
-      </table>
-      <
-    </section>
-    <section class="container">
-      <br />
-      <table class="table-hover">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th></th>
@@ -92,7 +65,44 @@
             <th>Total</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        {% for item in items %}
+        <tbody>
+          <tr>
+            <td>
+              <img
+                src="{{item.product.product_image.url}}"
+                alt="product-image"
+                class="img-thumbnail"
+              />
+            </td>
+            <td>{{ item.product }}</td>
+            <td>£{{ item.product.product_price|floatformat:2 }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>£{{ item.get_total }}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </section>
+    <br />
+    <section class="container">
+      <br />
+      <table class="table table-responsive">
+        <tr>
+          <th scope="col">
+            <h6>Items: <strong>{{ order.get_basket_items }}</strong></h6>
+          </th>
+
+          <th scope="col">
+            <h6>
+              Total:
+              <strong>£{{ order.get_basket_total|floatformat:2 }}</strong>
+            </h6>
+          </th>
+          <th scope="col">
+            <a href="{% url 'checkout' %}" class="btn btn-dark">Checkout</a>
+          </th>
+        </tr>
       </table>
     </section>
     <script

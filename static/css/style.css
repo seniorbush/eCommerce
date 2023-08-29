@@ -21,8 +21,8 @@
   flex-direction: column;
 } */
 
-/* .card {
-  position: relative;
+.card {
+  /* position: relative;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -30,8 +30,9 @@
 
   word-wrap: break-word;
   background-color: #fff;
-  background-clip: border-box;
-} */
+  background-clip: border-box; */
+  transition: 0.3s;
+}
 
 .card-body {
   -ms-flex: 1 1 auto;
@@ -40,8 +41,14 @@
 }
 
 .card-img-top {
-  object-fit: contain;
+  object-fit: cover;
   height: 150px;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 5px 10px rgba(142, 142, 142, 0.47);
+  outline: 1px solid cyan;
 }
 
 i {
@@ -151,4 +158,8 @@ a {
   background-image: url("../css/banner.jpg");
   background-size: cover;
   background-position: center;
+}
+
+.img-thumbnail {
+  max-height: 100px;
 }
