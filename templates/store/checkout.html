@@ -59,6 +59,40 @@
           <div class="checkout-form">
             <h4>Order Summary</h4>
             <p>Please register in order to checkout more quickly</p>
+            <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in items %}
+
+                  <tr>
+                    <td>
+                      <img
+                        src="{{item.product.product_image.url}}"
+                        alt="product-image"
+                        class="summary-img-thumbnail"
+                      />
+                    </td>
+                    <td>{{ item.product }}</td>
+                    <td>£{{ item.product.product_price|floatformat:2 }}</td>
+                    <td class="qty-text">{{ item.quantity }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+              <div class="totals">
+                <h6>Items: {{ order.get_basket_items }}</h6>
+                <h6>Total: {{ order.get_basket_total }}</h6>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-lg-6 d-flex justify-content-center form-card">

@@ -48,7 +48,7 @@
 .card:hover {
   transform: scale(1.1);
   box-shadow: 0px 5px 10px rgba(142, 142, 142, 0.47);
-  outline: 1px solid cyan;
+  /* outline: 1px solid cyan; */
 }
 
 i {
@@ -162,4 +162,35 @@ a {
 
 .img-thumbnail {
   max-height: 100px;
+}
+
+.basket-info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  padding-right: 4rem;
+  box-shadow: 0px 5px 10px rgba(142, 142, 142, 0.47);
+  border-radius: 1rem;
+}
+
+.item-total {
+  padding-right: 3rem;
+}
+
+.value-total {
+  padding-right: 3rem;
+}
+
+.summary-img-thumbnail {
+  max-height: 75px;
+}
+
+.totals {
+  float: right;
+  text-align: right;
+}
+
+.qty-text {
+  text-align: center;
 }
