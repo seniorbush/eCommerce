@@ -35,10 +35,14 @@
           <a class="navbar-brand"
             ><i class="bi bi-house"></i>Digi<span>Domus</span></a
           >
-          <div class="btn-group">
-            <button class="btn">
-              <i class="bi bi-bag-plus basket"></i>
-            </button>
+          <div class="btn-group d-flex">
+            <a type="button" class="btn" href="{% url 'basket' %}"
+              ><i class="bi bi-bag-plus basket"></i>
+              <div class="btn basketItemsCount p-0 text-danger fw-bold">
+                {{basketItems}}
+              </div>
+            </a>
+
             <button class="btn"><i class="bi bi-person-fill"></i></button>
           </div>
         </div>

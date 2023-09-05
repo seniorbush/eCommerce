@@ -66,10 +66,13 @@
             />
             <button class="btn btn-outline-dark" type="submit">Search</button>
           </form> -->
-          <div class="btn-group">
+          <div class="btn-group d-flex">
             <a type="button" class="btn" href="{% url 'basket' %}"
-              ><i class="bi bi-bag-plus basket"></i
-            ></a>
+              ><i class="bi bi-bag-plus basket"></i>
+              <div class="btn basketItemsCount p-0 text-danger fw-bold">
+                {{basketItems}}
+              </div>
+            </a>
 
             <button class="btn"><i class="bi bi-person-fill"></i></button>
           </div>

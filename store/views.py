@@ -6,8 +6,18 @@ from .models import *
 
 
 def index(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        basketItems = order.get_basket_items
+    else:
+        items - [] 
+        order = {'get_basket_total':0, 'get_basket_items':0}
+        basketItems = order['get_basket_total']
+
     product_list = Product.objects.order_by("product_id")
-    context = {"product_list" : product_list}
+    context = {"product_list" : product_list, "basketItems" : basketItems}
     return render(request, 'store/index.html', context)
 
 def basket(request):
@@ -15,10 +25,12 @@ def basket(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
+        basketItems = order.get_basket_items
     else:
         items - [] 
-        order = {'get_basket_total':0, 'get_basket_items':0}   
-    context = {'items' : items, 'order' : order}
+        order = {'get_basket_total':0, 'get_basket_items':0}  
+        basketItems = order['get_basket_total'] 
+    context = {'items' : items, 'order' : order, "basketItems" : basketItems}
     return render(request, 'store/basket.html', context)
 
 
@@ -27,11 +39,12 @@ def checkout(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
+        basketItems = order.get_basket_items
     else:
         items - [] 
         order = {'get_basket_total':0, 'get_basket_items':0}   
-
-    context = {'items' : items, 'order' : order}
+        basketItems = order['get_basket_total'] 
+    context = {'items' : items, 'order' : order, "basketItems" : basketItems}
     return render(request, 'store/checkout.html', context)
 
 def product(request, product_id):
