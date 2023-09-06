@@ -194,3 +194,28 @@ a {
 .qty-text {
   text-align: center;
 }
+
+.qty {
+  max-width: fit-content;
+  text-align: center;
+}
+.qty-adjust {
+  display: flex;
+  flex-direction: column;
+}
+
+.qty-adjust i {
+  margin: 0;
+  font-size: 1.25rem;
+  transition: 0.3s;
+}
+
+.qty-adjust i:hover {
+  cursor: pointer;
+  color: green;
+  transform: scale(1.1);
+}
+
+.minus:hover {
+  color: red !important;
+}

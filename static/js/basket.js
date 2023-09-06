@@ -19,7 +19,7 @@ for (let i = 0; i < updateButton.length; i++) {
 function updateUserOrder(productId, action) {
   console.log("User is logged in sending data...");
 
-  const url = "update_item/";
+  const url = "/update_item/";
 
   fetch(url, {
     method: "POST",

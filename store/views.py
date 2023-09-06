@@ -48,8 +48,17 @@ def checkout(request):
     return render(request, 'store/checkout.html', context)
 
 def product(request, product_id):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        basketItems = order.get_basket_items
+    else:
+        items - [] 
+        order = {'get_basket_total':0, 'get_basket_items':0}   
+        basketItems = order['get_basket_total'] 
     product = Product.objects.get(product_id=product_id)
-    context = {"product" : product}
+    context = {"product" : product, "basketItems" : basketItems}
     return render(request, 'store/product.html', context)
 
 def updateItem(request):
