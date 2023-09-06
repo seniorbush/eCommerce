@@ -68,7 +68,9 @@
           <div class="btn-group d-flex">
             <a type="button" class="btn" href="{% url 'basket' %}"
               ><i class="bi bi-bag-plus basket"></i>
-              <div class="btn basketItemsCount p-0 text-danger fw-bold">
+              <div
+                class="btn basketItemsCount p-0 text-primary fw-bold position-absolute"
+              >
                 {{basketItems}}
               </div>
             </a>
