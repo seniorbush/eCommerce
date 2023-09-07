@@ -213,7 +213,7 @@ a {
 .qty-adjust i:hover {
   cursor: pointer;
   color: green;
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 }
 
 .minus:hover {
