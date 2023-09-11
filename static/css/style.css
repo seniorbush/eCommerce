@@ -122,36 +122,9 @@ a {
   outline-width: 0;
 }
 
-.btn-info {
+.btn-primary {
   color: #ffffff !important;
 }
-
-/*Imaged Radio Buttons*/
-.radio-group {
-  position: relative;
-  margin-bottom: 25px;
-}
-
-.radio {
-  display: inline-block;
-  width: 204;
-  height: 64;
-  border-radius: 0;
-  background: lightblue;
-  box-sizing: border-box;
-  border: 2px solid lightgrey;
-  cursor: pointer;
-  margin: 8px 25px 8px 0px;
-}
-
-.radio:hover {
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
-}
-
-.radio.selected {
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.4);
-}
-/*  */
 
 .banner {
   height: 25rem;
@@ -218,4 +191,8 @@ a {
 
 .minus:hover {
   color: red !important;
+}
+
+.hidden {
+  display: none !important;
 }

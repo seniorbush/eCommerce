@@ -5,13 +5,13 @@
     <i class="bi bi-caret-left-fill"></i>
   </a>
 </div>
-
+<br />
 <section class="container">
   <div class="row">
     <div class="col-lg-6 d-flex justify-content-center">
       <div class="checkout-form">
         <h4>Order Summary</h4>
-        <p>Please register in order to checkout more quickly</p>
+        <br />
         <div>
           <table class="table">
             <thead>
@@ -48,79 +48,107 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-6 d-flex justify-content-center form-card">
-      <div class="form-card">
-        <h4 id="heading2" class="text-danger">Payment Method</h4>
-        <div class="radio-group">
-          <div class="radio" data-value="credit">
-            <img
-              src="https://i.imgur.com/28akQFX.jpg"
-              width="200px"
-              height="60px"
-            />
-          </div>
-          <div class="radio" data-value="paypal">
-            <img
-              src="https://i.imgur.com/5QFsx7K.jpg"
-              width="200px"
-              height="60px"
-            />
-          </div>
-          <br />
-        </div>
-        <label class="pay">Name on Card</label>
-        <input type="text" name="holdername" placeholder="John Smith" />
+    <div class="col-lg-6 form-card">
+      <form id="form">
+        <h4 id="heading2" class="text-primary">Shipping Information</h4>
+
+        <br />
+        <label class="pay">Full Name</label>
+        <input
+          required
+          class="form-field"
+          type="text"
+          name="fullName"
+          placeholder="John Smith"
+        />
+        <label class="pay">Email</label>
+        <input
+          required
+          class="form-field"
+          type="email"
+          name="email"
+          placeholder="johnsmith@email.com"
+        />
+
+        <label class="pay">Address Line</label>
+        <input required class="form-field" type="text" name="addressLine" />
+
         <div class="row">
-          <div class="col-8 col-md-6">
-            <label class="pay">Card Number</label>
-            <input
-              type="text"
-              name="cardno"
-              id="cr_no"
-              placeholder="0000-0000-0000-0000"
-              minlength="19"
-              maxlength="19"
-            />
+          <div class="col-4 col-md-6">
+            <label class="pay">Town/City</label>
+            <input required class="form-field" type="text" name="townCity" />
           </div>
           <div class="col-4 col-md-6">
-            <label class="pay">CVV</label>
-            <input
-              type="password"
-              name="cvcpwd"
-              placeholder="&#9679;&#9679;&#9679;"
-              class="placeicon"
-              minlength="3"
-              maxlength="3"
-            />
+            <label class="pay">Postcode</label>
+            <input required class="form-field" type="text" name="postcode" />
           </div>
         </div>
+        <br />
         <div class="row">
-          <div class="col-md-12">
-            <label class="pay">Expiration Date</label>
-          </div>
-          <div class="col-md-12">
-            <input
-              type="text"
-              name="exp"
-              id="exp"
-              placeholder="MM/YY"
-              minlength="5"
-              maxlength="5"
-            />
+          <div class="col-4 col-md-6">
+            <button class="btn btn-primary" id="form-button" type="submit">
+              Continue
+            </button>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <input
-              type="submit"
-              value="MAKE A PAYMENT &nbsp; &#xf178;"
-              class="btn btn-info placeicon"
-            />
-          </div>
+      </form>
+
+      <div class="box-element hidden" id="payment-info">
+        <small>Paypal Options</small>
+        <!--<button id="make-payment">Make payment</button>-->
+        <div id="paypal-button-container">
+          <button id="make-payment">Make Payment</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+  const total = "{{order.get_basket_total}}";
+
+  const form = document.getElementById("form");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log("form submitted");
+    document.getElementById("form-button").classList.add("hidden");
+    document.getElementById("payment-info").classList.remove("hidden");
+  });
+
+  document
+    .getElementById("make-payment")
+    .addEventListener("click", function (e) {
+      submitFormData();
+    });
+
+  function submitFormData() {
+    console.log("payment button clicked");
+
+    const userFormData = {
+      fullName: form.fullName.value,
+      email: form.email.value,
+      addressLine: form.addressLine.value,
+      townCity: form.townCity.value,
+      postcode: form.postcode.value,
+      total: total,
+    };
+
+    console.log(userFormData);
+
+    const url = "/process_order/";
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-CSRFToken": csrftoken },
+      body: JSON.stringify({ form: userFormData }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success: ", data);
+        alert("Transaction successful");
+
+        window.location.href = "{% url 'index' %}";
+      });
+  }
+</script>
 {% endblock content %}
